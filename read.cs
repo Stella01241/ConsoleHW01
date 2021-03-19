@@ -153,6 +153,24 @@ namespace ConsoleApp6
                 return;
             }
         }
-       
+        public static void deletefolder(string fromPath)
+        {
+           
+            
+                foreach (string d in Directory.GetFileSystemEntries(fromPath))
+                {
+                    if (System.IO.File.Exists(d))
+                    {
+                        FileInfo fi = new FileInfo(d);
+                        if (fi.Attributes.ToString().IndexOf("ReadOnly") != -1)
+                            fi.Attributes = FileAttributes.Normal;
+                        System.IO.File.Delete(d);//直接删除其中的文件   
+                    }
+                    else
+                    deletefolder(d);//递归删除子文件夹   
+                }
+                Directory.Delete(fromPath);//删除已空文件夹   
+            
+        }
     }
 }

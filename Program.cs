@@ -51,7 +51,7 @@ namespace ConsoleApp6
 
             if (method.ToLower() == "deletefolder")
             {
-                Class1.createfolder(path);
+                Class1.deletefolder(path);
             }
 
 
