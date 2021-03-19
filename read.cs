@@ -47,11 +47,112 @@ namespace ConsoleApp6
 
             
         }
+        //if(!File.Exists()) 
 
         public static void MoveFile(string fromPath, string toPaht)
         {
+            if (File.Exists(fromPath) == false)
+            {
+                Console.WriteLine($"沒有此檔案{fromPath}");
+                return;
+            }
+            Console.WriteLine($"是否將{fromPath}搬移至{toPaht}請輸入Y/N");
+            string yes = Console.ReadLine().ToLower();
+
+            if (File.Exists(toPaht)) 
+            {
+                Console.WriteLine("已存在相同檔案");
+                return;
+            }
+            if(yes=="y"|| yes == "yes")
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                File.Move(fromPath, toPaht);
+                sw.Stop();
+                Console.WriteLine($"檔案讀取完成,共使用{sw.Elapsed.TotalMilliseconds}毫秒");
+            }
+            else
+            {
+                return;
+            }
+                
+        }
+
+        public static void copy(string fromPath, string toPaht)
+        {
+            if (File.Exists(fromPath) == false)
+            {
+                Console.WriteLine($"沒有此檔案{fromPath}");
+                return;
+            }
+            Console.WriteLine($"是否將{fromPath}複製至{toPaht}請輸入Y/N");
+            string yes = Console.ReadLine().ToLower();
+
+            if (File.Exists(toPaht))
+            {
+                Console.WriteLine("已存在相同檔案");
+                return;
+            }
+            if (yes == "y" || yes == "yes")
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                File.Copy(fromPath, toPaht);
+                sw.Stop();
+                Console.WriteLine($"檔案複製完成,共使用{sw.Elapsed.TotalMilliseconds}");
+            }
+            else
+            {
+                return;
+            }
 
         }
 
+        public static void deletefile(string[] fromPath)
+        {
+
+            for (int i=1;i < fromPath.Length;i++)
+            {
+                File.Delete(fromPath[i]);
+            }
+
+
+        }
+
+        public static void createfolder(string fromPath)
+        {
+            
+            Console.Write("是否繼續 ? (Y/N):");
+
+
+            string yes = Console.ReadLine().ToLower(); //將使用者輸入轉乘小寫
+
+
+            if (Directory.Exists(fromPath))
+            {
+                Console.WriteLine("已存在相同資料夾");
+                return;
+            }
+
+
+           
+
+            if (yes == "y" || yes == "yes")
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+
+                Directory.CreateDirectory(fromPath);
+                
+                sw.Stop();
+                Console.WriteLine($"創建資料夾完成,共使用{sw.Elapsed.TotalMilliseconds}");
+            }
+            else
+            {
+                return;
+            }
+        }
+       
     }
 }

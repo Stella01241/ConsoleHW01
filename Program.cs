@@ -14,8 +14,8 @@ namespace ConsoleApp6
                 Console.WriteLine("----啟動程式----");
             }
 
-            string method = args[0];
-            string path = args[1];
+            string method = args[0];//參數1
+            string path = args[1]; //參數2
             
 
             //ReadFile時用這個↓↓↓
@@ -32,6 +32,30 @@ namespace ConsoleApp6
                 string path2 = args[2];
                 Class1.MoveFile(path, path2);
             }
+
+            if (method.ToLower() == "copyfile")
+            {
+                string path2 = args[2];
+                Class1.copy(path, path2);
+            }
+
+            if(method.ToLower()=="deletefile")
+            {
+                Class1.deletefile(args);
+            }
+
+            if(method.ToLower() == "createfolder")
+            {
+                Class1.createfolder(path);
+            }
+
+            if (method.ToLower() == "deletefolder")
+            {
+                Class1.createfolder(path);
+            }
+
+
+
 
             Console.WriteLine("----程式結束----");
 
